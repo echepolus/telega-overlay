@@ -38,10 +38,10 @@ function update_unstable() {
       "${telega_digest}" \
       "${telega_version}" > telega.json
 
-    tdlib_rev="v${tdlib_min_version}"
+    tdlib_commit_sha="$(git ls-remote https://github.com/tdlib/td.git refs/heads/master | cut -f1)"
 
     tdlib_digest="$(nix-prefetch-url --unpack \
-      "https://github.com/tdlib/td/archive/refs/tags/${tdlib_commit_sha}.tar.gz")"
+      "https://github.com/tdlib/td/archive/${tdlib_commit_sha}.tar.gz")"
 
     format_repo_meta "tdlib" "td" \
       "${tdlib_commit_sha}" \
